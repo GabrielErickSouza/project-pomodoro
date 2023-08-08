@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useInterval } from '../hooks/use-interval'
 import { Timer } from '../components/timer'
 import {Button} from './button'
 import { secondsToTime } from '../utils/second-to-time'
+
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const bellStart = require('../sounds/bell-start.mp3')
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -33,27 +35,39 @@ export function PomodoroTimer(props:Props): JSX.Element{
 
     useInterval(()=>{
         setMainTime(mainTime - 1)
+        if (working) setFullWorkingTime(fullWorkingTime + 1)
     }, timeCouting? 1000:null)
 
-    const configureWork = () =>{
+    const configureWork = useCallback(() =>{
         setTimeCouting(true)
         setWorking(true)
         setResting(false)
         setMainTime(props.pomodoroTime)
         audioStartWorking.play()
-    }
+    },[setTimeCouting,
+        setWorking,
+        setResting,
+        setMainTime,
+        props.pomodoroTime])
 
-    const configureRest = (long:boolean) =>{
+    const configureRest = useCallback((long:boolean) =>{
         setTimeCouting(true)
         setWorking(false)
         setResting(true)
         audioStopWorking.play()
         if (long) {
-            setMainTime(props.pomodoroTime)
+            setMainTime(props.longRestTime)
         }else{
             setMainTime(props.shortRestTime)
         }
-    }
+    },[
+        setTimeCouting,
+        setWorking,
+        setResting,
+        setMainTime,
+         props.longRestTime,
+          props.shortRestTime,
+        ])
 
     useEffect(()=>{
         if (working) document.body.classList.add('working')
@@ -76,7 +90,7 @@ export function PomodoroTimer(props:Props): JSX.Element{
 
     return (
         <div className="pomodoro">
-            <h2>You are: working</h2>
+            <h2>You are: {working?'working':'resting'}</h2>
             <Timer mainTime={mainTime}/>
             <div className="controls">    
                 <Button text="Work" onClick={()=> configureWork()}></Button>
