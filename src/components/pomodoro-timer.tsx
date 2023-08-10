@@ -3,6 +3,8 @@ import { useInterval } from '../hooks/use-interval'
 import { Timer } from '../components/timer'
 import {Button} from './button'
 import { secondsToTime } from '../utils/second-to-time'
+import { Controls, Details, Pomodoro } from '../utils/pomodoro'
+
 
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -89,25 +91,24 @@ export function PomodoroTimer(props:Props): JSX.Element{
     },[working,resting,mainTime,configureRest,setCyclesQtdManager,completedCycles,configureWork,cyclesQtdManager,numberOfPomodoro,props.cycles])
 
     return (
-        <div className="pomodoro">
+        <Pomodoro>
             <h2>You are: {working?'working':'resting'}</h2>
             <Timer mainTime={mainTime}/>
-            <div className="controls">    
-                <Button text="Work" onClick={()=> configureWork()}></Button>
-                <Button text="Rest" onClick={()=> configureRest(false)}></Button>
-                <Button 
-                className={!working && !resting ? 'hidden':''}
+            <Controls>    
+                <Button text="Work" onClick={()=> configureWork()}/>
+                <Button text="Rest" onClick={()=> configureRest(false)}/>
+                {working || resting ?<Button 
                 text={timeCouting?'Pause': 'Play'} 
                 onClick={()=> setTimeCouting(!timeCouting)}
-                ></Button>
-            </div>
+                />: null }
+            </Controls>
 
-            <div className="details">
+            <Details>
                 <p>Ciclos concluidos: {completedCycles}</p>
                 <p>Horas trabalhadas: {secondsToTime(fullWorkingTime)}</p>
                 <p>Pomodoros concluidos: {numberOfPomodoro}</p>
-            </div>
-        </div>
+            </Details>
+        </Pomodoro>
         
     )
 }

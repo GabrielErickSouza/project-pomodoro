@@ -1,16 +1,20 @@
 import React from 'react';
-import { PomodoroTimer } from './components/pomodoro-timer';
+import { PomodoroTimer } from './pomodoro-timer';
+import { GlobalStyle, Container} from '../utils/globalStyle';
 
 function App(): JSX.Element {
   return (
-    <div className="container">
+    <>
+    <GlobalStyle/>
+    <Container>
         <PomodoroTimer 
         pomodoroTime={3600} 
         shortRestTime={300}
         longRestTime={900}
         cycles={4}
         />
-    </div>
+    </Container>
+    </>
   );
 }
 

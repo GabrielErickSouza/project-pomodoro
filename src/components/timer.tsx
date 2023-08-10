@@ -1,6 +1,5 @@
-import React from 'react'
 import { secondsToMinutes } from '../utils/second-to-minutes'
-
+import {Time} from '../utils/pomodoro'
 
 interface Props {
     mainTime:number
@@ -8,6 +7,6 @@ interface Props {
 
 export function Timer(props:Props): JSX.Element{
      return (
-        <div className="timer">{secondsToMinutes(props.mainTime)}</div>
+        <Time>{secondsToMinutes(props.mainTime)}</Time>
      )
 }
