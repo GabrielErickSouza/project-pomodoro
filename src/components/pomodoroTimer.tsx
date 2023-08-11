@@ -1,9 +1,9 @@
 import { useEffect, useState, useCallback } from 'react'
-import { useInterval } from '../../hooks/use-interval'
-import { Timer } from '../Timer/timer'
-import {Button} from '../Button/button'
-import { secondsToTime } from '../../utils/second-to-time'
-import { Controls, Details, Pomodoro, Title } from './pomodoroStyle'
+import { useInterval } from '../hooks/use-interval'
+import { Timer } from './Timer/timer'
+import {Button} from './Button/button'
+import { secondsToTime } from '../utils/second-to-time'
+import { Controls, Details, Pomodoro, Title } from './Pomodoro/pomodoroStyle'
 
 
 
