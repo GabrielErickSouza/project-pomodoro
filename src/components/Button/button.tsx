@@ -1,5 +1,5 @@
 import React from 'react'
-import {ButtonStyle} from './pomodoroStyle'
+import {ButtonStyle} from './buttonStyle'
 
 interface Props {
     text: string

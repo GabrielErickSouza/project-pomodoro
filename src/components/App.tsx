@@ -1,5 +1,5 @@
 import React from 'react';
-import { PomodoroTimer } from './pomodoro-timer';
+import { PomodoroTimer } from './Pomodoro/pomodoroTimer';
 import { GlobalStyle, Container} from './globalStyle';
 
 function App(): JSX.Element {
