@@ -1,5 +1,5 @@
 import { secondsToMinutes } from '../utils/second-to-minutes'
-import {Time} from '../utils/pomodoro'
+import {Time} from './pomodoroStyle'
 
 interface Props {
     mainTime:number

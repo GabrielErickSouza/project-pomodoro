@@ -3,7 +3,7 @@ import { useInterval } from '../hooks/use-interval'
 import { Timer } from '../components/timer'
 import {Button} from './button'
 import { secondsToTime } from '../utils/second-to-time'
-import { Controls, Details, Pomodoro } from '../utils/pomodoro'
+import { Controls, Details, Pomodoro, Title } from './pomodoroStyle'
 
 
 
@@ -92,7 +92,7 @@ export function PomodoroTimer(props:Props): JSX.Element{
 
     return (
         <Pomodoro>
-            <h2>You are: {working?'working':'resting'}</h2>
+            <Title>You are: {working?'working':'resting'}</Title>
             <Timer mainTime={mainTime}/>
             <Controls>    
                 <Button text="Work" onClick={()=> configureWork()}/>
