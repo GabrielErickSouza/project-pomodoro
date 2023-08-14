@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const ButtonStyle = styled.div`
+export const ButtonStyle = styled.button`
     background: #41e1ba;
         border: none;
         cursor: pointer;
